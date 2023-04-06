@@ -12,7 +12,10 @@ const resolvers = {
       return workout;
     },
     updateWorkout: async (parent, {_id, update}) => {
-      const workout = await Workout.findOneAndUpdate(args);
+      const workout = await Workout.findOneAndUpdate(
+        { _id },
+        {workout: update}
+      );
       return workout;
     },
     deleteWorkout: async (parent, args) => {
