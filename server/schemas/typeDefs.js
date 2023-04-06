@@ -4,16 +4,18 @@ const typeDefs = gql`
 
   type Workout {
     _id: ID!
-    name: String!
+    title: String!
   }
 
   type Query {
-    workout: [Workout]
+    workouts: [Workout]
+    workout(_id: ID!): Workout
   }
 
   type Mutation {
-    createWorkout(): Workout
-    updateWorkout(_id: String!, update: Int!): Workout
+    createWorkout(title: String!): Workout
+    updateWorkout(_id: Int!, update: String!): Workout
+    deleteWorkout(_id: Int!): Workout
   }
 `;
 

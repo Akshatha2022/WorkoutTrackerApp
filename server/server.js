@@ -1,14 +1,33 @@
 require("dotenv").config();
-
+const { ApolloServer } = require('apollo-server-express');
+const db = require('./config/connection');
+const { typeDefs, resolvers } = require('./schemas');
 const express = require("express");
 const mongoose = require("mongoose");
 const workoutRoutes = require("");
 const userRoutes = require("");
 const path = require("path");
 
+const server = new ApolloServer({
+    typeDefs,
+    resolvers,
+});
 
 // express app
 const app = express();
 
 app.use(express.static(path.resolve(__dirname, "")));
 
+
+const startApolloServer = async (typeDefs, resolvers) => {
+    await server.start();
+    server.applyMiddleware({ app });
+    db.once('open', () => {
+        app.listen(PORT, () => {
+            console.log(`API server running on port ${PORT}!`);
+            console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
+        })
+    })
+};
+
+startApolloServer(typeDefs, resolvers);

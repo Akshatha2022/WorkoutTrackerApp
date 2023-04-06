@@ -10,7 +10,7 @@ export const CREATE_WORKOUT = gql`
 `;
 
 export const UPDATE_WORKOUT = gql`
-  mutation createWorkout($workout: String!) {
+  mutation updateWorkout($_id: String!, $update: String!) {
     createWorkout(workout: $workout) {
       _id
       workout
