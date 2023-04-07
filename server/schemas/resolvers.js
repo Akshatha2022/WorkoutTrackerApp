@@ -11,13 +11,18 @@ const resolvers = {
   },
   Mutation: {
     createWorkout: async (parent, args) => {
-      const workout = await Workout.create({title: args.title});
+      const workout = await Workout.create({
+        title: args.title,
+        time: args.time,
+        reps: args.reps,
+        distance: args.distance
+      });
       return workout;
     },
-    updateWorkout: async (parent, {_id, update}) => {
+    updateWorkout: async (parent, {_id, title, time, reps, distance}) => {
       const workout = await Workout.findOneAndUpdate(
         { _id: _id },
-        {workout: update},
+        {$set:{title,time,reps,distance}},
         {new: true}
       );
       return workout;
