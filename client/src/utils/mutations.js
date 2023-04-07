@@ -28,7 +28,7 @@ export const DELETE_WORKOUT = gql`
   mutation deleteWorkout($_id: String!) {
     deleteWorkout(_id: $_id) {
       _id
-      workout
+      title
     }
   }
 `;
