@@ -17,8 +17,8 @@ const typeDefs = gql`
 
   type Mutation {
     createWorkout(title: String!, time: Int, reps: Int, distance: Int): Workout
-    updateWorkout(_id: Int!, update: String!): Workout
-    deleteWorkout(_id: Int!): Workout
+    updateWorkout(_id: String!, title: String, time: Int, reps: Int, distance: Int): Workout
+    deleteWorkout(_id: String!): Workout
   }
 `;
 

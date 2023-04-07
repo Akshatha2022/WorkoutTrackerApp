@@ -19,10 +19,10 @@ const resolvers = {
       });
       return workout;
     },
-    updateWorkout: async (parent, {_id, update}) => {
+    updateWorkout: async (parent, {_id, title, time, reps, distance}) => {
       const workout = await Workout.findOneAndUpdate(
         { _id: _id },
-        {$set:{workout: update}},
+        {$set:{title,time,reps,distance}},
         {new: true}
       );
       return workout;
