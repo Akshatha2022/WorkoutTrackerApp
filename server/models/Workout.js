@@ -8,15 +8,12 @@ const workoutSchema = new Schema({
   },
   time: {
     type: Number,
-    default: 0,
   },
   reps: {
     type: Number,
-    required: true,
   },
   distance: {
-    type: Number,
-    default: 0,
+    type: Number
   },
 },
 { timestamps: true }
