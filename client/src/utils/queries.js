@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const QUERY_WORKOUTS = gql`
-  query getWorkout {
+  query workouts {
     workout {
       _id
       title
@@ -9,6 +9,18 @@ export const QUERY_WORKOUTS = gql`
       reps
       distance
     }
+  }
+`;
+
+export const QUERY_ONE_WORKOUT = gql`
+  query workout {
+    workout(_id: $id) {
+    _id
+    distance
+    reps
+    time
+    title
+  }
   }
 `;
 

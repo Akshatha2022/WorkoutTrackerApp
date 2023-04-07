@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const CREATE_WORKOUT = gql`
-  mutation createWorkout($title: String!, $time: Int, $reps: Int!, distance: Int) {
+  mutation createWorkout($title: String!, $time: Int, $reps: Int, distance: Int) {
     createWorkout(title: $title, time: $time, reps: $reps, distance: $distance) {
       _id
       title
@@ -13,17 +13,20 @@ export const CREATE_WORKOUT = gql`
 `;
 
 export const UPDATE_WORKOUT = gql`
-  mutation updateWorkout($_id: String!, $update: String!) {
-    updateWorkout(workout: $workout) {
-      _id
-      workout
-    }
+  mutation updateWorkout(id: String!, $distance: Int, $reps: Int, $time: Int, $title: String) {
+  updateWorkout(_id: $id, distance: $distance, reps: $reps, time: $time, title: $title) {
+    _id
+    distance
+    reps
+    time
+    title
+  }
   }
 `;
 
 export const DELETE_WORKOUT = gql`
-  mutation deleteWorkout($workout: String!) {
-    deleteWorkout(workout: $workout) {
+  mutation deleteWorkout($_id: String!) {
+    deleteWorkout(_id: $_id) {
       _id
       workout
     }
