@@ -5,6 +5,9 @@ const typeDefs = gql`
   type Workout {
     _id: ID!
     title: String!
+    time: Int
+    reps: Int!
+    distance: Int
   }
 
   type Query {
