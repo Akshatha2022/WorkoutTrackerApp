@@ -16,14 +16,6 @@ const resolvers = {
         time: args.time,
         reps: args.reps,
         distance: args.distance
-      })
-      .then((workout)=>{
-        const userID = localStorage.getItem("WorkoutUserID");
-        return User.findOneAndUpdate(
-          {_id: userID},
-          {$addToSet: {workouts: workout}},
-          {new: true}
-        );
       });
       return workout;
     },
