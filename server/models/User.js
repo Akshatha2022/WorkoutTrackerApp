@@ -5,14 +5,33 @@ const validator = require("validator");
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
+  id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
+    },
   email: {
     type: String,
     required: true,
     unique: true,
+    allowNull: false,
+    validate: {
+      isEmail: true,
+    },
   },
   password: {
     type: String,
     required: true,
+    allowNull: false,
+  },
+  first_name: {
+    type: String,
+    allowNull: false,
+  },
+  username: {
+    type: String,
+    allowNull: false,
   },
 });
 
