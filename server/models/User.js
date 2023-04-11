@@ -4,16 +4,38 @@ const bcrypt = require("bcrypt");
 const validator = require("validator");
 const Schema = mongoose.Schema;
 
+const {workout, workoutSchema} = require('./Workout');
+
 const userSchema = new Schema({
+  id: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
+    },
   email: {
     type: String,
     required: true,
     unique: true,
+    allowNull: false,
+    validate: {
+      isEmail: true,
+    },
   },
   password: {
     type: String,
     required: true,
+    allowNull: false,
   },
+  first_name: {
+    type: String,
+    allowNull: false,
+  },
+  username: {
+    type: String,
+    allowNull: false,
+  },
+  workouts: [workoutSchema]
 });
 
 // login method
@@ -26,6 +48,7 @@ userSchema.statics.login = async function (email, password) {
   if (!user) {
     throw Error("User not found");
   }
+  localStorage.setItem("WorkoutUserID",user._id);
   // if user is found, check if password is correct
   const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) {

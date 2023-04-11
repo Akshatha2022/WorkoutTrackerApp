@@ -11,7 +11,7 @@ export default class Login extends Component {
           <input
             type="email"
             className="form-control"
-            placeholder="Enter email"
+            placeholder="Email"
           />
         </div>
 
@@ -20,7 +20,7 @@ export default class Login extends Component {
           <input
             type="password"
             className="form-control"
-            placeholder="Enter password"
+            placeholder="Password"
           />
         </div>
 
@@ -31,6 +31,9 @@ export default class Login extends Component {
               className="custom-control-input"
               id="customCheck1"
             />
+            <label className="custom-control-label" htmlFor="customCheck1">
+              Remember me
+            </label>
           </div>
         </div>
 
@@ -41,6 +44,10 @@ export default class Login extends Component {
         </div>
         <p className="forgot-password text-right">
           Forgot <a href="#">password?</a>
+        </p>
+      
+        <p className="Sign-up text-left">
+          Not a User? <a href='/SignUp'>Sign Up</a>
         </p>
       </form>
     )
