@@ -57,6 +57,7 @@ const resolvers = {
           {$addToSet: {workouts: workout}},
           {new: true}
         );
+
       });
       return workout;
     },
