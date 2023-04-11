@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const validator = require("validator");
 const Schema = mongoose.Schema;
 
-const {workout, workoutSchema} = require('./Workout');
+const { workout, workoutSchema } = require('./Workout');
 
 const userSchema = new Schema({
   email: {
@@ -12,9 +12,9 @@ const userSchema = new Schema({
     required: true,
     unique: true,
     allowNull: false,
-    validate: {
-      isEmail: true,
-    },
+    // validate: {
+    //   isEmail: true,
+    // },
   },
   password: {
     type: String,
@@ -29,7 +29,10 @@ const userSchema = new Schema({
     type: String,
     allowNull: false,
   },
-  workouts: [workoutSchema]
+  workouts: [{
+    type: mongoose.Schema.Types.ObjectID,
+    ref: "Workout"
+  }]
 });
 
 // login method
@@ -42,7 +45,7 @@ userSchema.statics.login = async function (email, password) {
   if (!user) {
     throw Error("User not found");
   }
-  localStorage.setItem("WorkoutUserID",user._id);
+  localStorage.setItem("WorkoutUserID", user._id);
   // if user is found, check if password is correct
   const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) {
