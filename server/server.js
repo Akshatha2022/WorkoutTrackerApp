@@ -5,7 +5,7 @@ const { typeDefs, resolvers } = require('./schemas');
 const express = require("express");
 const mongoose = require("mongoose");
 // const workoutRoutes = require("");
-// const userRoutes = require("");
+const userRoutes = require("./routes/api/user-routes");
 const path = require("path");
 
 const PORT = process.env.PORT || 3001;
@@ -22,6 +22,7 @@ app.use(express.static(path.resolve(__dirname, "")));
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use("/api/user-routes", userRoutes);
 
 const startApolloServer = async (typeDefs, resolvers) => {
     await server.start();
