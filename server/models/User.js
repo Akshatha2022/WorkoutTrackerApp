@@ -6,12 +6,6 @@ const Schema = mongoose.Schema;
 const {workout, workoutSchema} = require('./Workout');
 
 const userSchema = new Schema({
-  id: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true,
-      autoIncrement: true,
-    },
   email: {
     type: String,
     required: true,

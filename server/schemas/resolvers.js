@@ -1,7 +1,17 @@
+const { AuthenticationError } = require('apollo-server-express');
 const { Workout } = require('../models');
+const {User} = require("../models");
+const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
+    users: async () => {
+      return User.find().populate('workouts');
+    },
+    user: async (parent, { username }) => {
+      return User.findOne({ username }).populate('workouts');
+    },
+
     workouts: async () => {
       return Workout.find({});
     },
@@ -10,15 +20,38 @@ const resolvers = {
     }
   },
   Mutation: {
+    addUser: async (parent, { email, password , first_name, username}) => {
+      const user = await User.create({ username, email, password, first_name });
+      const token = signToken(user);
+      return { token, user };
+    },
+    login: async (parent, { email, password }) => {
+      const user = await User.findOne({ email });
+
+      if (!user) {
+        throw new AuthenticationError('No user found with this email address');
+      }
+
+      const correctPw = await user.isCorrectPassword(password);
+
+      if (!correctPw) {
+        throw new AuthenticationError('Incorrect credentials');
+      }
+
+      const token = signToken(user);
+
+      return { token, user };
+    },
+
     createWorkout: async (parent, args) => {
-      const workout = await Workout.create({
+       await Workout.create({
         title: args.title,
         time: args.time,
         reps: args.reps,
         distance: args.distance
       })
       .then((workout)=>{
-        const userID = localStorage.getItem("WorkoutUserID");
+        const userID = localStorage.getItem("id_token");
         return User.findOneAndUpdate(
           {_id: userID},
           {$addToSet: {workouts: workout}},
