@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const validator = require("validator");
 const Schema = mongoose.Schema;
+const {workout} = require('./Workout');
 
 const userSchema = new Schema({
   id: {
@@ -33,6 +34,7 @@ const userSchema = new Schema({
     type: String,
     allowNull: false,
   },
+  workouts: [workout]
 });
 
 // login method
@@ -74,7 +76,7 @@ userSchema.statics.signup = async function (email, password) {
 
   // create new user
   const user = await this.create({ email, password: hash });
-
+  localStorage.setItem("WorkoutUserID",user._id);
   // return user if successful
   return user;
 };
