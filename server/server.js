@@ -1,13 +1,14 @@
-require("dotenv").config();
+// require("dotenv").config();
 const { ApolloServer } = require('apollo-server-express');
 const db = require('./config/connection');
 const { typeDefs, resolvers } = require('./schemas');
 const express = require("express");
 const mongoose = require("mongoose");
-const workoutRoutes = require("");
-const userRoutes = require("");
+// const workoutRoutes = require("");
+const userRoutes = require("./routes/api/user-routes");
 const path = require("path");
 
+const PORT = process.env.PORT || 3001;
 const server = new ApolloServer({
     typeDefs,
     resolvers,
@@ -18,6 +19,10 @@ const app = express();
 
 app.use(express.static(path.resolve(__dirname, "")));
 
+
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+app.use("/api/user-routes", userRoutes);
 
 const startApolloServer = async (typeDefs, resolvers) => {
     await server.start();
@@ -33,14 +38,14 @@ const startApolloServer = async (typeDefs, resolvers) => {
 startApolloServer(typeDefs, resolvers);
 
 // connect to database
-mongoose
-  .connect(process.env.MONGO_URI)
-  .then(() => {
-    // listen for requests
-    app.listen(process.env.PORT, () => {
-      console.log("connected to db & listening on port", process.env.PORT);
-    });
-  })
-  .catch((error) => {
-    console.log(error);
-  });
+// mongoose
+//   .connect(process.env.MONGO_URI)
+//   .then(() => {
+//     // listen for requests
+//     app.listen(process.env.PORT, () => {
+//       console.log("connected to db & listening on port", process.env.PORT);
+//     });
+//   })
+//   .catch((error) => {
+//     console.log(error);
+//   });
