@@ -45,7 +45,7 @@ userSchema.statics.login = async function (email, password) {
   if (!user) {
     throw Error("User not found");
   }
-  localStorage.setItem("WorkoutUserID", user._id);
+ 
   // if user is found, check if password is correct
   const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) {
