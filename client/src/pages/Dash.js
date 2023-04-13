@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { render } from "react-dom";
 import Calendar from 'react-calendar';
 import Nav from '../components/Navigation';
+import RecentActivity from '../components/RecentActivity';
 import Login from './SignIn';
 import SignUp from './SignUp';
 import AddWorkout from '../components/AddWorkout';
+
 
 
 const ReactCalendar = () => {
@@ -31,8 +33,9 @@ const ReactCalendar = () => {
 
     return (<div>
         <Nav currentPage={currentPage} handlePageChange={handlePageChange} />
-        <AddWorkout />
         <Calendar onChange={onChange} value={date} />
+        <AddWorkout />
+        <RecentActivity />
     </div>
     )
 };
