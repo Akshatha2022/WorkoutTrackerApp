@@ -5,12 +5,20 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 
 export default function Nav({ currentPage, handlePageChange }) {
     const [loggedIn, changeLoggin] = useState("false");
-    if (currentPage = 'AddWorkout') {
+    if (currentPage !== 'Login' || currentPage !== 'SignUp') {
         changeLoggin("true");
     }
     if (loggedIn === "true") {
         return (
             <ButtonGroup>
+                <Button>
+                    <a
+                        href='#Dash'
+                        onClick={() => handlePageChange("Dash")}
+                        className={currentPage === 'Dash' ? 'nav-link active' : 'nav-link'}>
+                        Dashboard
+                    </a>
+                </Button>
                 <Button>
                     <a
                         href='#AddWorkout'
@@ -52,6 +60,14 @@ export default function Nav({ currentPage, handlePageChange }) {
                     </Button>
                     <Button>
                         <a
+                            href='#Dash'
+                            onClick={() => handlePageChange("Dash")}
+                            className={currentPage === 'Dash' ? 'nav-link active' : 'nav-link'}>
+                            Dashboard
+                        </a>
+                    </Button>
+                    <Button>
+                        <a
                             href='#AddWorkout'
                             onClick={() => handlePageChange("AddWorkout")}
                             className={currentPage === 'AddWorkout' ? 'nav-link active' : 'nav-link'}>
@@ -59,13 +75,13 @@ export default function Nav({ currentPage, handlePageChange }) {
                         </a>
                     </Button>
                     <Button>
-                    <a
-                        href='#RecentActivity'
-                        onClick={() => handlePageChange("RecentActivity")}
-                        className={currentPage === 'RecentActivity' ? 'nav-link active' : 'nav-link'}>
-                        Recent Activity
-                    </a>
-                </Button>
+                        <a
+                            href='#RecentActivity'
+                            onClick={() => handlePageChange("RecentActivity")}
+                            className={currentPage === 'RecentActivity' ? 'nav-link active' : 'nav-link'}>
+                            Recent Activity
+                        </a>
+                    </Button>
                 </ButtonGroup>
             </div>
         );
