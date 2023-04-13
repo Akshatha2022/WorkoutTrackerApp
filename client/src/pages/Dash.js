@@ -27,7 +27,7 @@ const ReactCalendar = () => {
         if (currentPage === 'AddWorkout') {
             return <AddWorkout />;
         }
-        return <Resume />;
+        return <RecentActivity/>;
     };
     const handlePageChange = (page) => setCurrentPage(page);
 

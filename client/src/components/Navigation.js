@@ -19,6 +19,14 @@ export default function Nav({ currentPage, handlePageChange }) {
                         Add Workout
                     </a>
                 </Button>
+                <Button>
+                    <a
+                        href='#RecentActivity'
+                        onClick={() => handlePageChange("RecentActivity")}
+                        className={currentPage === 'RecentActivity' ? 'nav-link active' : 'nav-link'}>
+                        Recent Activity
+                    </a>
+                </Button>
             </ButtonGroup>
         )
     } else {
@@ -50,6 +58,14 @@ export default function Nav({ currentPage, handlePageChange }) {
                             Add Workout
                         </a>
                     </Button>
+                    <Button>
+                    <a
+                        href='#RecentActivity'
+                        onClick={() => handlePageChange("RecentActivity")}
+                        className={currentPage === 'RecentActivity' ? 'nav-link active' : 'nav-link'}>
+                        Recent Activity
+                    </a>
+                </Button>
                 </ButtonGroup>
             </div>
         );
