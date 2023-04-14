@@ -4,13 +4,14 @@ import { useState } from 'react';
 
 
 
-export default function Nav({ currentPage, handlePageChange }) {
+function Nav({ currentPage, handlePageChange }) {
     const [loggedIn, changeLoggin] = useState("false");
     if (currentPage !== 'Login' || currentPage !== 'SignUp') {
         changeLoggin("true");
     }
     if (loggedIn === "true") {
         return (
+            <div>
                 <Button type="addWorkout" className="outline-secondary">
                     <a
                         href='#Dash'
@@ -27,7 +28,7 @@ export default function Nav({ currentPage, handlePageChange }) {
                         Add Workout
                     </a>
                 </Button>
-
+        
                 <Button>
                     <a
                         href='#RecentActivity'
@@ -36,7 +37,7 @@ export default function Nav({ currentPage, handlePageChange }) {
                         Recent Activity
                     </a>
                 </Button>
-            </ButtonGroup>
+            </div>
         )
     } else {
         return (
@@ -82,12 +83,17 @@ export default function Nav({ currentPage, handlePageChange }) {
                             Recent Activity
                         </a>
                     </Button>
-                </ButtonGroup>
-
             </div>
         );
     }
 }
+export default Nav;
+
+
+
+
+
+
 
 
 
