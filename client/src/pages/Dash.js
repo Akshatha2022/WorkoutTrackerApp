@@ -17,38 +17,40 @@ const ReactCalendar = () => {
         setDate(date)
     }
 
-    const [currentPage, setCurrentPage] = useState('Login');
-    const renderPage = () => {
-        if (currentPage === 'Login') {
-            return <Login />;
-        }
-        if (currentPage === 'SignUp') {
-            return <SignUp />;
-        }
-        if (currentPage === 'AddWorkout') {
-            return <AddWorkout />;
-        }
-        if(currentPage === 'RecentActivity'){
-        return <RecentActivity/>;
-        } 
-        if (currentPage === 'Dash'){
-            return (<div>
+    // const [currentPage, setCurrentPage] = useState('Login');
+    // const renderPage = () => {
+    //     if (currentPage === 'Login') {
+    //         return <Login />;
+    //     }
+    //     if (currentPage === 'SignUp') {
+    //         return <SignUp />;
+    //     }
+    //     if (currentPage === 'AddWorkout') {
+    //         return <AddWorkout />;
+    //     }
+    //     if(currentPage === 'RecentActivity'){
+    //     return <RecentActivity/>;
+    //     } 
+    //     if (currentPage === 'Dash'){
+    //         return (<>
                 
-                <Calendar onChange={onChange} value={date} />
-                <AddWorkout />
-                <RecentActivity />
-            </div>)
-        }
-    };
-    const handlePageChange = (page) => setCurrentPage(page);
+    //             <Calendar onChange={onChange} value={date} />
+    //             <AddWorkout />
+    //             <RecentActivity />
+    //         </>)
+    //     }
+    // };
+    // const handlePageChange = (page) => setCurrentPage(page);
 
     return (<div>
-        <Nav currentPage={currentPage} handlePageChange={handlePageChange} />
-        {renderPage}
+        {/* <Nav currentPage={currentPage} handlePageChange={handlePageChange} /> */}
+        <Calendar onChange={onChange} value={date} />
+        <AddWorkout />
+                
     </div>
     )
 };
 
-render(<ReactCalendar />, document.querySelector("#root"));
+// render(<ReactCalendar />, document.querySelector("#root"));
 
 export default ReactCalendar
