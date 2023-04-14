@@ -30,7 +30,7 @@ class AuthService {
   login(idToken) {
     localStorage.setItem('id_token', idToken);
     // TODO: Redirect to the dashboard, need dashboard route in App.js
-    window.location.assign('/');
+    window.location.assign('/Dash');
   }
 
   logout() {
