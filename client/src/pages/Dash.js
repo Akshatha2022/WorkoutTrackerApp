@@ -27,17 +27,27 @@ const ReactCalendar = () => {
         if (currentPage === 'AddWorkout') {
             return <AddWorkout />;
         }
-        return <Resume />;
+        if(currentPage === 'RecentActivity'){
+        return <RecentActivity/>;
+        } 
+        if (currentPage === 'Dash'){
+            return (<div>
+                
+                <Calendar onChange={onChange} value={date} />
+                <AddWorkout />
+                <RecentActivity />
+            </div>)
+        }
     };
     const handlePageChange = (page) => setCurrentPage(page);
 
     return (<div>
         <Nav currentPage={currentPage} handlePageChange={handlePageChange} />
-        <Calendar onChange={onChange} value={date} />
-        <AddWorkout />
-        <RecentActivity />
+        {renderPage}
     </div>
     )
 };
 
 render(<ReactCalendar />, document.querySelector("#root"));
+
+export default ReactCalendar

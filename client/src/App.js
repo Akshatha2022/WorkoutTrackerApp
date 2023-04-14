@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 
 import Login from './pages/SignIn'
 import SignUp from './pages/SignUp'
+import ReactCalendar from './pages/Dash'
 
 function App() {
   return (
@@ -24,6 +25,11 @@ function App() {
                     Sign up
                   </Link>
                 </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to={'/Dash'}>
+                    Dashboard
+                  </Link>
+                </li>
               </ul>
             </div>
           </div>
@@ -35,6 +41,7 @@ function App() {
               <Route exact path="/" element={<Login />} />
               <Route path="/SignIn" element={<Login />} />
               <Route path="/SignUp" element={<SignUp />} />
+              <Route path="/Dash" element={<ReactCalendar/>}/>
             </Routes>
           </div>
         </div>
