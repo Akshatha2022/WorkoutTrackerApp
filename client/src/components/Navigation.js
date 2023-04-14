@@ -1,6 +1,7 @@
 import React from 'react';
-import Button from '@mui/material/Button';
-import ButtonGroup from '@mui/material/ButtonGroup';
+import { Button } from 'bootstrap';
+import { useState } from 'react';
+
 
 
 export default function Nav({ currentPage, handlePageChange }) {
@@ -10,8 +11,7 @@ export default function Nav({ currentPage, handlePageChange }) {
     }
     if (loggedIn === "true") {
         return (
-            <ButtonGroup>
-                <Button>
+                <Button type="addWorkout" className="outline-secondary">
                     <a
                         href='#Dash'
                         onClick={() => handlePageChange("Dash")}
@@ -27,6 +27,7 @@ export default function Nav({ currentPage, handlePageChange }) {
                         Add Workout
                     </a>
                 </Button>
+
                 <Button>
                     <a
                         href='#RecentActivity'
@@ -40,9 +41,7 @@ export default function Nav({ currentPage, handlePageChange }) {
     } else {
         return (
             <div>
-                <ButtonGroup variant="contained" aria-label="outlined primary button group">
-
-                    <Button>
+                    <Button type="Login" className="outline-secondary">
                         <a
                             href='#Login'
                             onClick={() => handlePageChange("Login")}
@@ -50,7 +49,7 @@ export default function Nav({ currentPage, handlePageChange }) {
                             Login
                         </a>
                     </Button>
-                    <Button>
+                    <Button type="signUp" className="outline-secondary">
                         <a
                             href='#SignUp'
                             onClick={() => handlePageChange("SignUp")}
@@ -58,7 +57,7 @@ export default function Nav({ currentPage, handlePageChange }) {
                             Sign Up
                         </a>
                     </Button>
-                    <Button>
+                    <Button type="addWorkout" className="outline-secondary">
                         <a
                             href='#Dash'
                             onClick={() => handlePageChange("Dash")}
@@ -74,6 +73,7 @@ export default function Nav({ currentPage, handlePageChange }) {
                             Add Workout
                         </a>
                     </Button>
+
                     <Button>
                         <a
                             href='#RecentActivity'
@@ -83,6 +83,7 @@ export default function Nav({ currentPage, handlePageChange }) {
                         </a>
                     </Button>
                 </ButtonGroup>
+
             </div>
         );
     }
