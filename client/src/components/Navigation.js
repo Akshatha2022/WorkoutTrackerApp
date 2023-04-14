@@ -11,6 +11,7 @@ export default function Nav({ currentPage, handlePageChange }) {
     }
     if (loggedIn === "true") {
         return (
+            <div>
                 <Button type="addWorkout" className="outline-secondary">
                     <a
                         href='#Dash'
@@ -36,7 +37,7 @@ export default function Nav({ currentPage, handlePageChange }) {
                         Recent Activity
                     </a>
                 </Button>
-            </ButtonGroup>
+            </div>
         )
     } else {
         return (
@@ -82,7 +83,7 @@ export default function Nav({ currentPage, handlePageChange }) {
                             Recent Activity
                         </a>
                     </Button>
-                </ButtonGroup>
+                
 
             </div>
         );
