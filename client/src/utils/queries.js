@@ -6,7 +6,7 @@ export const QUERY_USER = gql`
       _id
 
       email
-      first_name
+      firstName
       username
       workouts {
         _id
