@@ -49,3 +49,5 @@ const ReactCalendar = () => {
 };
 
 render(<ReactCalendar />, document.querySelector("#root"));
+
+export default ReactCalendar
