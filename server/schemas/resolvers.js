@@ -6,14 +6,14 @@ const { signToken } = require('../utils/auth');
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find().populate('workouts');
+      return await User.find().populate('workouts');
     },
-    user: async (parent, { username }) => {
-      return User.findOne({ username }).populate('workouts');
+    user: async (parent, args, context) => {
+      return await User.findOne({ _id: context.user._id}).populate('workouts');
     },
 
     workouts: async () => {
-      return Workout.find({});
+      return await Workout.find({});
     },
     workout: async (parent, args) => {
       return await Workout.findOne({_id: args._id});
@@ -43,23 +43,22 @@ const resolvers = {
       return { token, user };
     },
 
-    createWorkout: async (parent, args) => {
-       await Workout.create({
+    createWorkout: async (parent, args, context) => {
+       const newWorkout = await Workout.create({
         title: args.title,
         time: args.time,
         reps: args.reps,
         distance: args.distance
       })
-      .then((workout)=>{
-        const userID = localStorage.getItem("id_token");
-        return User.findOneAndUpdate(
-          {_id: userID},
-          {$addToSet: {workouts: workout}},
+      
+       // const userID = localStorage.getItem("id_token");
+       console.log(context.user);
+        await User.findOneAndUpdate(
+          {_id: context.user._id},
+          {$addToSet: {workouts: newWorkout}},
           {new: true}
         );
-
-      });
-      return workout;
+          return newWorkout;
     },
     updateWorkout: async (parent, {_id, title, time, reps, distance}) => {
       const workout = await Workout.findOneAndUpdate(

@@ -7,11 +7,12 @@ const mongoose = require("mongoose");
 // const workoutRoutes = require("");
 const userRoutes = require("./routes/api/user-routes");
 const path = require("path");
-
+const {authMiddleware} = require('./utils/auth');
 const PORT = process.env.PORT || 3001;
 const server = new ApolloServer({
     typeDefs,
     resolvers,
+    context: authMiddleware
 });
 
 // express app

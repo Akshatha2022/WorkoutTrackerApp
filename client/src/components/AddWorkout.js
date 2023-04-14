@@ -18,9 +18,9 @@ const AddWorkout = () => {
             const { data } = await createWorkout({
                 variables: {
                     title: newTitle,
-                    time: newTime,
-                    reps: newReps,
-                    distance: newDistance
+                    time: parseInt(newTime),
+                    reps: parseInt(newReps),
+                    distance: parseInt(newDistance)
                 },
             });
             console.log(data);
