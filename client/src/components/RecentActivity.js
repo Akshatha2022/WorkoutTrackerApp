@@ -5,14 +5,9 @@ import { QUERY_USER } from '../utils/queries';
 
 const RecentActivity = () => {
 
-    const { loading, error, data } = useQuery(QUERY_USER);
-    const getUserWorkouts = async (event) => {
-        event.preventDefault();
-       const workouts = data?.user.workouts || [];
-        return workouts;
-    }
-    const workouts = getUserWorkouts();
-
+    const { loading, data } = useQuery(QUERY_USER);
+    const workouts = data?.user.workouts || [];
+    console.log(workouts);
 
     return (
         <>

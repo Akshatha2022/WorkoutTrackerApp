@@ -46,7 +46,7 @@ const ReactCalendar = () => {
         {/* <Nav currentPage={currentPage} handlePageChange={handlePageChange} /> */}
         <Calendar onChange={onChange} value={date} />
         <AddWorkout />
-                
+        <RecentActivity />
     </div>
     )
 };
