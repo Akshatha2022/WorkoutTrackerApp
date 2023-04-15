@@ -1,77 +1,113 @@
-import React from 'react';
-import { useState } from 'react';
-import { useQuery, useMutation } from '@apollo/client';
-import { CREATE_WORKOUT } from '../utils/mutations';
+import React, { useState } from 'react';
 
-const AddWorkout = () => {
+function Trainerworkout() {
+  const [workout, setWorkout] = useState({
+    exercise: '',
+    sets: '',
+    reps: '',
+    description: '',
+  });
 
-    const [newTitle, setNewTitle] = useState("");
-    const [newTime, setNewTime] = useState("");
-    const [newReps, setNewReps] = useState("");
-    const [newDistance, setNewDistance] = useState("");
+  const [workoutData, setWorkoutData] = useState([]);
 
-    const [createWorkout, { data, loading, error, reset }] = useMutation(CREATE_WORKOUT);
+  const handleChange = (e) => {
+    e.preventDefault();
+    setWorkout({
+      ...workout,
+      [e.target.name]: e.target.value,
+    });
+  };
 
-    const addWorkoutInput = async (event) => {
-        event.preventDefault();
-        try {
-            const { data } = await createWorkout({
-                variables: {
-                    title: newTitle,
-                    time: parseInt(newTime),
-                    reps: parseInt(newReps),
-                    distance: parseInt(newDistance)
-                },
-            });
-            console.log(data);
-            return data;
-        } catch (err) {
-            console.error(err);
-        }
-    }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setWorkoutData([...workoutData, workout]);
+    setWorkout('');
+  };
 
-    return (
-        <div className=
-            "flex-row justify-center justify-space-between-md align-center">
-            <h1>Create New Workout</h1>
-            <div className="col-12 col-lg-9">
-                <input
-                    type="text"
-                    value={newTitle}
-                    onChange={(e) => setNewTitle(e.target.value)}
-                />
-            </div>
-            <div className="col-12 col-lg-9">
-                <input
-                    type="text"
-                    value={newTime}
-                    onChange={(e) => setNewTime(e.target.value)}
-                />
-            </div>
-            <div className="col-12 col-lg-9">
-                <input
-                    type="text"
-                    value={newReps}
-                    onChange={(e) => setNewReps(e.target.value)}
-                />
-            </div>
-            <div className="col-12 col-lg-9">
-                <input
-                    type="text"
-                    value={newDistance}
-                    onChange={(e) => setNewDistance(e.target.value)}
-                />
-            </div>
-            <div className="col-12 col-lg-3">
+  const { exercise, sets, reps, description } = workout;
 
-                <button
-                    onClick={addWorkoutInput}
-                    className="btn btn-primary btn-block py-3">
-                    Add Workout</button>
-            </div>
+  return (
+    <>
+      <h3>Add a Workout</h3>
+        <form class="table table-bordered" onSubmit={handleSubmit}>
+            <label>
+            Exercise:
+            <input
+                type="text"
+                name="exercise"
+                placeholder="Exercice"
+                value={exercise || ''}
+                onChange={handleChange}
+            />
+            </label>
+            <br></br>
+            <br></br>
+            <label>
+            Set:
+            <input
+                type="text"
+                name="sets"
+                placeholder="Sets"
+                value={sets || ''}
+                onChange={handleChange}
+            />
+            </label>
+            <br></br>
+            <br></br>
+            <label>
+            Reps:
+            <input
+                type="text"
+                name="reps"
+                placeholder="Reps"
+                value={reps || ''}
+                onChange={handleChange}
+            />
+            </label>
+            <br></br>
+            <br></br>
+            <label>
+            Miles:
+            <input
+                type="text"
+                name="description"
+                placeholder="Miles"
+                value={description || ''}
+                onChange={handleChange}
+            />
+            </label>
+            <br></br>
+            <br></br>
 
-        </div>
-    );
-};
+            <button type="submit">Add Workout</button>
+        </form>
+      <div className="table table-bordered">
+        <table className="exerciseTable table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Exercise</th>
+              <th scope="col">Set</th>
+              <th scope="col">Reps</th>
+              <th scope="col">Miles</th>
+            </tr>
+          </thead>
+          <tbody>
+            {workoutData &&
+              workoutData.map((d, index) => (
+                <tr key={index}>
+                  <td>{d.exercise}</td>
+                  <td>{d.sets}</td>
+                  <td>{d.reps}</td>
+                  <td>{d.description}</td>
+                </tr>
+                
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </>
+  );
+}
 
-export default AddWorkout;
+export default Trainerworkout

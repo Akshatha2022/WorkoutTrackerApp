@@ -1,4 +1,5 @@
 import React from 'react';
+import Workouts from './AddWorkout';
 
 import { useQuery, useMutation } from '@apollo/client';
 import { QUERY_USER } from '../utils/queries';
