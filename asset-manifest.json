@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/WorkoutTrackerApp/static/css/main.4a402f45.css",
+    "main.js": "/WorkoutTrackerApp/static/js/main.bffe701c.js",
+    "static/js/787.1e62910f.chunk.js": "/WorkoutTrackerApp/static/js/787.1e62910f.chunk.js",
+    "static/media/loginpage.jpg": "/WorkoutTrackerApp/static/media/loginpage.4a0b209e4eab23483f12.jpg",
+    "index.html": "/WorkoutTrackerApp/index.html",
+    "main.4a402f45.css.map": "/WorkoutTrackerApp/static/css/main.4a402f45.css.map",
+    "main.bffe701c.js.map": "/WorkoutTrackerApp/static/js/main.bffe701c.js.map",
+    "787.1e62910f.chunk.js.map": "/WorkoutTrackerApp/static/js/787.1e62910f.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4a402f45.css",
+    "static/js/main.bffe701c.js"
+  ]
+}
