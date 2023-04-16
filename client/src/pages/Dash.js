@@ -7,6 +7,8 @@ import RecentActivity from '../components/RecentActivity';
 import Login from './SignIn';
 import SignUp from './SignUp';
 import AddWorkout from '../components/AddWorkout';
+import syling from '../pages/calendar.css';
+
 
 
 
